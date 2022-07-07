@@ -17,13 +17,13 @@ class AuthService
     {
         $user = User::where('email', $email)->first();
         if (Hash::check($password, $user->password)) {
-            return $this->getOrGenerate($user);
+            return $this->getOrGenerateToken($user);
         }
 
         throw new AuthenticationException('Wrong Credentials');
     }
 
-    private function getOrGenerate(User $user): string
+    private function getOrGenerateToken(User $user): string
     {
         if (is_null($token = $user->api_token)) {
             $token = Str::random(60);

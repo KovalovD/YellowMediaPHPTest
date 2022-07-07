@@ -27,6 +27,6 @@ class CompanyController extends Controller
             'description' => ['sometimes', 'string', 'nullable'],
         ]);
 
-        return new CompanyResource($this->service->createAndAssignCompany($request->user(), $request->all()));
+        return new CompanyResource($this->service->createAndAssign($request->user(), $request->all()));
     }
 }

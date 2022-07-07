@@ -13,21 +13,21 @@ class CompanyService
         return $user->companies()->get();
     }
 
-    public function createAndAssignCompany(User $user, array $input): Company
+    public function createAndAssign(User $user, array $input): Company
     {
-        $company = $this->createCompany($input);
+        $company = $this->create($input);
 
-        $this->assignCompany($user, $company);
+        $this->assign($user, $company);
 
         return $company;
     }
 
-    public function createCompany(array $input): Company
+    public function create(array $input): Company
     {
         return Company::create($input);
     }
 
-    public function assignCompany(User $user, Company $company): bool
+    public function assign(User $user, Company $company): bool
     {
         $user->companies()->attach($company->id);
 
